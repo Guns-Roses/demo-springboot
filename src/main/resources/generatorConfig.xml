@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动 -->
+    <classPathEntry
+            location="d:\mysql-connector-java-5.1.46.jar"/>
+    <context id="DB2Tables" targetRuntime="MyBatis3"
+             defaultModelType="flat">
+        <commentGenerator
+                type="com.springboot.demo.config.generator.MyCommentGenerator">
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+            <property name="javaFileEncoding" value="UTF-8"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test1?serverTimezone=UTC&amp;useSSL=false"
+                        userId="root" password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver
+                type="com.springboot.demo.config.generator.MyJavaTypeResolver">
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置 -->
+        <javaModelGenerator
+                targetPackage="com.springboot.demo.model.pojo"
+                targetProject="./src/main/java">
+            <!--会根据catalog,schema来生成子包 -->
+            <property name="enableSubPackages" value="true"/>
+            <!--判断是否对数据库查询结果进行trim操作 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件XML存放位置 -->
+        <sqlMapGenerator
+                targetPackage="com.springboot.demo.mapper"
+                targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Mapper接口类存放位置 -->
+        <!--接口和SQL分离 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.springboot.demo.repository"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--生成对应表及类名 -->
+
+                  <!--数据库表-->
+                  <table tableName="t_user" domainObjectName="t_user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+                       enableSelectByExample="false" selectByExampleQueryId="false" >
+                   <property name="useActualColumnNames" value="false"/>
+                </table>
+
+<!--    <table tableName="%" enableCountByExample="true"-->
+<!--               enableUpdateByExample="true" enableDeleteByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            &lt;!&ndash; <property name="useCompoundPropertyNames" value="true"/> <property-->
+<!--                name="modelOnly" value="true"/> &ndash;&gt;-->
+<!--            <property name="selectAllOrderByClause" value="true"/>-->
+<!--            &lt;!&ndash; 需要插入时返回主键值，请将此属性打开，column值为主键的列明 &ndash;&gt;-->
+<!--            <generatedKey column="id" sqlStatement="JDBC"-->
+<!--                          identity="true"/>-->
+<!--            &lt;!&ndash; <domainObjectRenamingRule searchString="^ad" replaceString=""/> &ndash;&gt;-->
+<!--            &lt;!&ndash;将数据库中的字段重命名为实体类的属性 &ndash;&gt;-->
+<!--            <columnOverride column="LONG_VARCHAR_FIELD"-->
+<!--                            jdbcType="VARCHAR"/>-->
+<!--            &lt;!&ndash;oracle中的配置 &ndash;&gt;-->
+<!--            &lt;!&ndash; <generatedKey column="id" sqlStatement="select seq_customer_stalls_id.nextval-->
+<!--                id from dual"/> &ndash;&gt;-->
+<!--        </table>-->
+
+    </context>
+</generatorConfiguration>
